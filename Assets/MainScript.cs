@@ -11,6 +11,11 @@ public class MainScript : MonoBehaviour {
     public LineFactory lineFactory;
     private Line drawnLine;
 
+    public int bluePower = 0;
+    public int redPower = 0;
+
+    public bool RUNNING = true;
+
     void Start()
     {
         lineFactory = GameObject.FindGameObjectWithTag("LineFactory").GetComponent<LineFactory>();
@@ -28,31 +33,32 @@ public class MainScript : MonoBehaviour {
 
     public void GenerateNodes()
     {
-        for (int i = 0; i < 200; i++)
+        int WIDTH = 40;
+        int HEIGHT = 19;
+
+        float XOFFSET = 0F;
+        float YOFFSET = 0F;
+
+        for (int i = 0; i < WIDTH; i++)
         {
-            bool success = false;
-            while (!success)
+            for (int j = 0; j < HEIGHT; j++)
             {
-                float x = Random.Range(-9.0F, 9.0F);
-                float y = Random.Range(-4.0F, 4.0F);
+                float x = Random.Range(0F, 0.75F);
+                float y = Random.Range(0F, 0.75F);
                 float distance = GetDistanceToNearestNode(x, y);
 
-                if (distance > 1 && distance < 1.5 || true)
-                {
-                    nodeList.Add(new Node("Delta X-166 Epsilon", x, y));
-                    success = true;
-                }
+                nodeList.Add(new Node("Delta X-166 Epsilon", i + x - 19.5F + XOFFSET, j + y - 9F + YOFFSET));
             }
-            
         }
     }
+
 
     private void GenerateNodeConnections()
     {
         
         foreach (Node node1 in this.nodeList)
         {
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 30; i++)
             {
                 Node node2 = this.nodeList[Random.Range(0, this.nodeList.Count - 1)];
 
@@ -149,12 +155,24 @@ public class MainScript : MonoBehaviour {
     }
 
 	void Update () {
-        for(int i = 0; i < 20; i++)
+
+        if (!RUNNING)
         {
-            foreach (Node node in nodeList)
+            return;
+        }
+
+        foreach (Node node in nodeList)
+        {
+            for (int i = 0; i < 1; i++)
             {
                 node.Tick();
             }
+            
         }
-	}
+        if (bluePower < 10 || redPower < 10)
+        {
+            RUNNING = false;
+            Debug.Log("SIMULATION ENDED!");
+        }
+    }
 }
