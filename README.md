@@ -3,5 +3,7 @@ Small fully procedurally generated node based strategy war faction simulation in
 
 ## Images
 
+![alt text](https://raw.githubusercontent.com/olahepelto/Galaxy-War/master/git-images/Capture3.PNG "Image 3")
+![alt text](https://raw.githubusercontent.com/olahepelto/Galaxy-War/master/git-images/Capture4.PNG "Image 4")
 ![alt text](https://raw.githubusercontent.com/olahepelto/Galaxy-War/master/git-images/Capture.PNG "Image 1")
 ![alt text](https://raw.githubusercontent.com/olahepelto/Galaxy-War/master/git-images/Capture2.PNG "Image 2")
